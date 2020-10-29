@@ -6,4 +6,4 @@ class DrinkSerializer(serializers.ModelSerializer):
     ingredients = RecipeSerializer(source='recipe_set', many=True)
     class Meta:
         model = Drink
-        fields = ('name','instructions','ingredients')
+        fields = ('name','ingredients','instructions',)
