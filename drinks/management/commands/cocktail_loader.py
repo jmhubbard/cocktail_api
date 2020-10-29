@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     drink.save()
                 except IntegrityError:
                     #If the show already exists then get that shows object to use when saving episodes
-                    duplicateShows += 1
+                    duplicateDrink += 1
                     drink = Drink.objects.get(name=item["strDrink"])
                 else:
                     savedDrink += 1
