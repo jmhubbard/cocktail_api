@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Recipe
+
+
+class RecipeAdmin(admin.ModelAdmin):
+
+    list_display = ('drink', 'ingredient', 'amount',)
+    list_filter = ('drink', 'ingredient', 'amount',)
+
+admin.site.register(Recipe, RecipeAdmin)
