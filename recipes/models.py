@@ -12,5 +12,10 @@ class Recipe(models.Model):
     )
     amount = models.CharField(max_length=200, null=True, blank=True)
 
+    class Meta:
+        unique_together = (
+            ("drink", "ingredient", "amount")
+        )
+
     def __str__(self):
         return f'{self.amount} {self.ingredient}'
