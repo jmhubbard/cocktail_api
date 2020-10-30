@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db import IntegrityError
 from drinks.models import Drink
 from ingredients.models import Ingredient
+from recipes.models import  Recipe
 
 from drinks.cocktailsdict import cocktailsdict
 
@@ -19,6 +20,9 @@ class Command(BaseCommand):
         #Character Counts
         savedIngredient = 0
         duplicateIngredient = 0
+
+        savedRecipe = 0
+        duplicateRecipe = 0
 
 
         for item in cocktailsdict:
@@ -44,7 +48,7 @@ class Command(BaseCommand):
 
                         if ingredientname != None:
                             ingredient = Ingredient(
-                                name = ingredientname
+                                name = ingredientname,
                             )
                             try:
                                 #Save the drink instance if it doesn't exist in database
@@ -55,9 +59,25 @@ class Command(BaseCommand):
                                 ingredient = Ingredient.objects.get(name=ingredientname)
                             else:
                                 savedIngredient += 1
+                            finally:
+                                recipe = Recipe(
+                                    drink = drink,
+                                    ingredient = ingredient,
+                                    amount = item[f'strMeasure{i}']
+                                )
+                                try:
+                                #Save the drink instance if it doesn't exist in database
+                                    recipe.save()
+                                except IntegrityError:
+                                #If the drink already exists then get that drink object to use when saving recipe
+                                    duplicateRecipe += 1
+                                else:
+                                    savedRecipe += 1
 
         print(f'Total Attempted Cocktails: {totalAttemptedItems}')
         print(f'Total Saved Drinks: {savedDrink}')
         print(f'Total Duplicate Drinks: {duplicateDrink}')
         print(f'Total Saved Ingredients: {savedIngredient}')
         print(f'Total Duplicate Ingredients: {duplicateIngredient}')
+        print(f'Total Saved Recipes: {savedRecipe}')
+        print(f'Total Duplicate Recipes: {duplicateRecipe}')
