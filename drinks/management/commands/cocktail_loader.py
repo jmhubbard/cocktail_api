@@ -60,7 +60,7 @@ class Command(BaseCommand):
                             else:
                                 savedIngredient += 1
                             finally:
-                                if item[f'strMeasure{i}'] != None and item[f'strMeasure{i}'] != '':
+                                if item[f'strMeasure{i}'] != None:
                                     recipe = Recipe(
                                         drink = drink,
                                         ingredient = ingredient,
@@ -77,9 +77,10 @@ class Command(BaseCommand):
                                 except IntegrityError:
                                 #If the drink already exists then get that drink object to use when saving recipe
                                     duplicateRecipe += 1
-                                    print(f'Drink: {drink} Ingredient:{ingredient}')
+                                    # print(f'Drink: {drink} Ingredient:{ingredient}')
                                 else:
                                     savedRecipe += 1
+                                    print(f'Drink: {drink} Recipe: {recipe}')
 
         print(f'Total Attempted Cocktails: {totalAttemptedItems}')
         print(f'Total Saved Drinks: {savedDrink}')
