@@ -39,23 +39,20 @@ class Command(BaseCommand):
                 else:
                     savedDrink += 1
                 finally:
-                    ingredientList = []
                     for i in range(1,16):
-                        ingredientkey = f'strIngredient{i}'
-                        ingredientList.append(item[ingredientkey])
+                        ingredientname = item[f'strIngredient{i}']
 
-                    for ingredient in ingredientList:
-                        if ingredient != None:
-                            newingredient = Ingredient(
-                                name = ingredient
+                        if ingredientname != None:
+                            ingredient = Ingredient(
+                                name = ingredientname
                             )
                             try:
                                 #Save the drink instance if it doesn't exist in database
-                                newingredient.save()
+                                ingredient.save()
                             except IntegrityError:
                                 #If the drink already exists then get that drink object to use when saving recipe
                                 duplicateIngredient += 1
-                                newingredient = Ingredient.objects.get(name=ingredient)
+                                ingredient = Ingredient.objects.get(name=ingredientname)
                             else:
                                 savedIngredient += 1
 
