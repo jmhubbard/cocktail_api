@@ -46,7 +46,7 @@ class Command(BaseCommand):
                     for i in range(1,16):
                         ingredientname = item[f'strIngredient{i}']
 
-                        if ingredientname != None:
+                        if ingredientname != None and ingredientname!= '':
                             ingredient = Ingredient(
                                 name = ingredientname,
                             )
@@ -60,17 +60,24 @@ class Command(BaseCommand):
                             else:
                                 savedIngredient += 1
                             finally:
-                                recipe = Recipe(
-                                    drink = drink,
-                                    ingredient = ingredient,
-                                    amount = item[f'strMeasure{i}']
-                                )
+                                if item[f'strMeasure{i}'] != None and item[f'strMeasure{i}'] != '':
+                                    recipe = Recipe(
+                                        drink = drink,
+                                        ingredient = ingredient,
+                                        amount = item[f'strMeasure{i}']
+                                    )
+                                else:
+                                    recipe = Recipe(
+                                        drink = drink,
+                                        ingredient = ingredient,
+                                    )
                                 try:
                                 #Save the drink instance if it doesn't exist in database
                                     recipe.save()
                                 except IntegrityError:
                                 #If the drink already exists then get that drink object to use when saving recipe
                                     duplicateRecipe += 1
+                                    print(f'Drink: {drink} Ingredient:{ingredient}')
                                 else:
                                     savedRecipe += 1
 
