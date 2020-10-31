@@ -23,4 +23,5 @@ urlpatterns = [
     path("drink-detail/<str:pk>/", views.drinkDetail, name="drink-detail"),
     path("drink-by-letter/<str:pk>/", views.drinksByLetter, name="drinks-by-letter"),
     path('ingredient-list/', ingredientList, name='ingredient-list'),
+    path('drink-image/<str:name>/', views.drinkView, name='drink-image'),
 ]

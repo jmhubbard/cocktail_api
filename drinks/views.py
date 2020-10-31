@@ -2,9 +2,13 @@ from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponse
 
 from .models import Drink
 from .serializers import DrinkSerializer
+
+from django.views.generic.base import TemplateView
+
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -38,3 +42,13 @@ def drinksByLetter(request, pk):
     serializer = DrinkSerializer(drinks, many=True)
 
     return Response(serializer.data)
+
+# class DrinkView(TemplateView):
+
+#     template_name = "drinks/drink.html"
+
+def drinkView(request, name=None):
+    context ={
+        'image': f'drinks/images/{name}',
+    }
+    return render(request, 'drinks/drink.html', context)
