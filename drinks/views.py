@@ -43,12 +43,9 @@ def drinksByLetter(request, pk):
 
     return Response(serializer.data)
 
-# class DrinkView(TemplateView):
-
-#     template_name = "drinks/drink.html"
-
 def drinkView(request, name=None):
     context ={
         'image': f'drinks/images/{name}',
     }
     return render(request, 'drinks/drink.html', context)
+
