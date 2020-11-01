@@ -31,6 +31,7 @@ class Command(BaseCommand):
             drink = Drink(
                 name = item["strDrink"],
                 instructions = item["strInstructions"],
+                image = item["strDrinkThumb"]
             )
             if options["save"]:
                 try:
