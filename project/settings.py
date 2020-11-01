@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gj5+tn)^5-xkmhy34wa_#0py90b6k^nr&u32igabhtv_hmyv#r'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -122,4 +123,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+#Static Root for new version of Djagno
+STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
+
+#Media_Root for new version of Django
+MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_URL = '/images/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+
+#S3 BUCKET CONFIG
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
+STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE')
+
