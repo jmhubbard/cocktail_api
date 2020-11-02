@@ -42,10 +42,3 @@ def drinksByLetter(request, pk):
     serializer = DrinkSerializer(drinks, many=True)
 
     return Response(serializer.data)
-
-def drinkView(request, name=None):
-    context ={
-        'image': f'drinks/images/{name}',
-    }
-    return render(request, 'drinks/drink.html', context)
-
