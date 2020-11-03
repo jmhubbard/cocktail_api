@@ -21,6 +21,6 @@ urlpatterns = [
     path('', views.apiOverview, name="api-overview"),
     path('drink-list/', views.drinkList, name='drink-list'),
     path("drink-detail/<str:pk>/", views.drinkDetail, name="drink-detail"),
-    path("drink-by-letter/<str:pk>/", views.drinksByLetter, name="drinks-by-letter"),
+    path("drink-by-letter/<str:firstChar>/", views.drinksByLetter, name="drinks-by-letter"),
     path('ingredient-list/', ingredientList, name='ingredient-list'),
 ]
