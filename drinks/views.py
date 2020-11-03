@@ -37,8 +37,8 @@ def drinkDetail(request, pk):
     return Response(serializer.data)
 
 @api_view(['Get'])
-def drinksByLetter(request, pk):
-    drinks = Drink.objects.filter(name__startswith=pk)
+def drinksByLetter(request, firstChar):
+    drinks = Drink.objects.filter(name__istartswith=firstChar)
     serializer = DrinkSerializer(drinks, many=True)
 
     return Response(serializer.data)
