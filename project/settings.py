@@ -48,12 +48,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'storages',
     'django.contrib.sites',
+    'corsheaders',
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -154,3 +156,5 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 # STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE')
 
+#Settings for Django-Cors-Headers
+CORS_ALLOW_ALL_ORIGINS = True
