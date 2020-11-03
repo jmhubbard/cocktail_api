@@ -9,6 +9,16 @@ from .serializers import DrinkSerializer
 
 from django.views.generic.base import TemplateView
 
+def getRandomDrink():
+    import random
+    drinks = Drink.objects.all()
+    drinklist = []
+    for item in drinks:
+        drinklist.append(item.id)
+    randomDrinkId = random.choice(drinklist)
+    randDrink = Drink.objects.get(id = randomDrinkId)
+    return randDrink
+
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -38,5 +48,12 @@ def drinkDetail(request, pk):
 def drinksByLetter(request, firstChar):
     drinks = Drink.objects.filter(name__istartswith=firstChar)
     serializer = DrinkSerializer(drinks, many=True)
+
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def randomDrink(request):
+    randDrink = getRandomDrink()
+    serializer = DrinkSerializer(randDrink, many=False)
 
     return Response(serializer.data)
