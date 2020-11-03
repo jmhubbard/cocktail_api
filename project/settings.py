@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'storages',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
