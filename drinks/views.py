@@ -15,10 +15,8 @@ def apiOverview(request):
     api_urls = {
         'List': '/drink-list/',
         'Detail View': '/drink-detail/<str:pk>/',
-        'Drinks By Letter': '/drink-by-letter/<str:pk>/',
-        'Create': '/drink-create/',
-        'Update': '/drink-update/<str:pk>/',
-        'Delete': '/drink-delete/<str:pk>/',
+        'Drinks By Letter': '/drink-by-letter/<str:firstChar>/',
+        'Ingredients List': '/ingredient-list/',
     }
     return Response(api_urls)
 
