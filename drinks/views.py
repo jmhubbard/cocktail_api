@@ -27,6 +27,7 @@ def apiOverview(request):
         'Detail View': '/drink-detail/<str:pk>/',
         'Drinks By Letter': '/drink-by-letter/<str:firstChar>/',
         'Ingredients List': '/ingredient-list/',
+        'Random Drink': '/random-drink/',
     }
     return Response(api_urls)
 
