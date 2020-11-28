@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG will be either True or False. True = '1' False = '0'
 DEBUG = bool(int(os.getenv('DEBUG', str(int(False)))))
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['.herokuapp.com', 'cocktail-api.jasonhubbard.dev']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
