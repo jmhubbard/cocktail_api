@@ -157,4 +157,9 @@ DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 # STATICFILES_STORAGE = os.getenv('STATICFILES_STORAGE')
 
 #Settings for Django-Cors-Headers
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://cocktail-recipes.jasonhubbard.dev/",
+    "https://gifted-almeida-168bbe.netlify.app/",
+]
