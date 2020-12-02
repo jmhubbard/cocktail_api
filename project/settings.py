@@ -162,4 +162,5 @@ DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 CORS_ALLOWED_ORIGINS = [
     "https://cocktail-recipes.jasonhubbard.dev/",
     "https://gifted-almeida-168bbe.netlify.app/",
+    "https://app-loader.jasonhubbard.dev/",
 ]
