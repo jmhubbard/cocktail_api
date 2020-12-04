@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'project.context_processors.google_analytics'
             ],
         },
     },
@@ -164,3 +165,5 @@ CORS_ALLOWED_ORIGINS = [
     "https://gifted-almeida-168bbe.netlify.app",
     "https://app-loader.jasonhubbard.dev",
 ]
+
+GOOGLE_ANALYTICS_KEY = os.environ.get("GOOGLE_ANALYTICS_KEY")
